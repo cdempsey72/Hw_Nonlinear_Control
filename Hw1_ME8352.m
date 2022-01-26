@@ -4,7 +4,8 @@
 clear; clc; close all;
 %%Define initial parameters and arrays
 xdot0_array = -1:0.1:1; 
-xdot0_array = cat(2,xdot0_array,linspace(1.01,1.04,5));
+xdot0_array = cat(2,xdot0_array,linspace(1.01,1.04,5)); 
+%the above concatenation is performed bc even small values >1 quickly cause the soln to blow up to inf!
 t_sim = 3; %set simulation time
 x_t = [];
 x_dot = [];
@@ -35,7 +36,7 @@ title('Position v. Time')
 %% Problem 2: m*x_ddot + 2*c*(x^2 - 1)*x_dot + k*x = 0
 clear; close all; clc;
 %%Define initial parameters and arrays
-x0_array = -1:0.1:1; 
+x0_array = 0:0.1:1; 
 xdot0_array = -1:0.1:1;
 t_sim = 3; %set simulation time
 m = 1; %mass
@@ -65,8 +66,8 @@ plot(x_t,x_dot)
 %% Problem 3: v_dot = u - |v|*v
 clear; close all; clc;
 %%Define initial parameters and arrays
-v0_array = 0; 
-vdot0_array = 0;
+v0 = 0; 
+vdot0 = 1.5; %note: changing initial state condition has litte/no effect on step response steady state result; but check what happens when v0>1!
 step_array = 1:0.25:2;
 t_sim = 10; %set simulation time
 v_t = [];
@@ -87,3 +88,4 @@ t_out = states.tout; %extract simulation time stamps
 %%Plot
 figure
 plot(t_out,v_t)
+axis([0 t_out(end) 0 2])
