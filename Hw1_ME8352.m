@@ -33,15 +33,15 @@ xlabel('x position state')
 ylabel('time')
 title('Position v. Time')
 
-%% Problem 2: m*x_ddot + 2*c*(x^2 - 1)*x_dot + k*x = 0
+%% Problem 2 and 3: m*x_ddot + 2*c*(x^2 - 1)*x_dot + k*x = 0
 clear; close all; clc;
 %%Define initial parameters and arrays
 x0_array = -3:1:3; 
 xdot0_array =0;
 t_sim = 25; %set simulation time
 m = 1;      %mass
-k = 2;      %stiffness coefficient
-c = 3;     %damping coefficient
+k = 1;      %stiffness coefficient
+c = 1;     %damping coefficient
 
 %%Simulate
 f1 = figure;
@@ -72,15 +72,16 @@ end
 hold off
 %label figures
 figure(f1);
-title('Phase Plane'); xlabel('x_t'); ylabel('x_dot')
+title('Phase Plane'); xlabel('x_t'); ylabel('x_{dot}')
 figure(f2);
 title('x v. time'); xlabel('time (s)'); ylabel('x_t')
 
-%% Problem 3: v_dot = u - |v|*v
+%% Problem 4: v_dot = u - |v|*v
 clear; close all; clc;
 %%Define initial parameters and arrays
 v0 = 0; 
-vdot0 = 1.5; %note: changing initial state condition has litte/no effect on step response steady state result; but check what happens when v0>1!
+vdot0 = 0;
+% vdot0 = 1.5; %note: changing initial state condition has litte/no effect on step response steady state result; but check what happens when v0>1!
 step_array = 1:0.25:2;
 t_sim = 10; %set simulation time
 v_t = [];
@@ -102,3 +103,4 @@ t_out = states.tout; %extract simulation time stamps
 figure
 plot(t_out,v_t)
 axis([0 t_out(end) 0 2])
+title('Velocity v. Time'); xlabel('time'); ylabel('velocity')
