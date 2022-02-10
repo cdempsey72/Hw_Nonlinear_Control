@@ -78,3 +78,9 @@ figure(f1);
 title('Phase Plane'); xlabel('x_t'); ylabel('x_{dot}')
 figure(f2);
 title('x v. time'); xlabel('time (s)'); ylabel('x_t')
+
+%% Problem 3
+clear; clc; close all;
+%%Define initial parameters and variables
+a_ = 1;     %switching line coefficient
+U_ = 1;     %control input
