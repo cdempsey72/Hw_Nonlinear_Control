@@ -29,8 +29,8 @@ K_array = [K_s,K_m,K_u];
 
 x_0 = 1;    %initial state condition
 xdot_0 = 0; %initial state condition
-x0_array = linspace(-5,5);
-xdot0_array = linspace(-3,3);
+x0_array = linspace(-5,5,25);
+xdot0_array = linspace(-3,3,25);
 t_sim = 60; %set simulation time
 
 f1 = figure; %phase plot figure K>5
@@ -42,7 +42,7 @@ for i = 1:length(K_array)
     %update initial condition
     K_ = K_array(i);
     for ii = 1:length(x0_array)
-        x0 = x0_array(ii);
+        x_0 = x0_array(ii);
         for iii = 1:length(xdot0_array)
         xdot_0 = xdot0_array(iii);
         %call simulink model
