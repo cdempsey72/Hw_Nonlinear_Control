@@ -3,19 +3,39 @@
 %% Problem 3
 clear; clc; close all;
 %%Define initial parameters and variables
-k1s = []; k2s = []; %closed-loop stable
-k1u = []; k2u = []; %closed-loop unstable
-tspan = [0 10];
-x0 = [0 0];
-
-options = odeset('OutputFcn',@odephas2);
-
-[t_s,x_s] = ode45(@(t,x) problem3ode(t,x,k1s,k2s), tspan, x0, options);
-[t_u,x_u] = ode45(@(t,x) problem3ode(t,x,k1u,k2u), tspan, x0, options);
+k1s = 3; k2s = 3; %closed-loop stable
+k1u = 2; k2u = 1; %closed-loop unstable
+tspan = [0 60];
+x0_array = linspace(-5,5,5);
+xdot0_array = linspace(-3,3,5);
+x0 = [];
 
 f_s = figure; f_u = figure;
+options = odeset('OutputFcn',@odephas2); %tell ode45 to output phase plots
+
+for i = 1:length(x0_array)
+    x_0 = x0_array(i);
+    for ii = 1:length(xdot0_array)
+        xdot_0 = xdot0_array(ii);
+        %update initial conditions
+        x0 = [x_0 xdot_0];
+        %solve and plot phase plane
+        figure(f_s)
+        hold on
+        [t_s,x_s] = ode45(@(t,x) problem3ode(t,x,k1s,k2s), tspan, x0, options);
+        figure(f_u)
+        hold on
+        [t_u,x_u] = ode45(@(t,x) problem3ode(t,x,k1u,k2u), tspan, x0, options);
+    end
+end
+
 figure(f_s)
-plot(t_s)
+title('Stable Phase Plot - k_1 = 3, k_2 = 3')
+xlabel('x'); ylabel('xdot')
+
+figure(f_u)
+title('Unstable Phase Plot - k_1 = 2, k_2 = 1')
+xlabel('x'); ylabel('xdot')
 
 %% Problem 4
 clear; clc; close all;
