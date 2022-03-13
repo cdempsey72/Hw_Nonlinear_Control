@@ -1,14 +1,14 @@
 %%% ME8352 Homework 4 %%%
-
 clear; clc; close all;
 %%Define initial parameters and variables
 k_ = 1; %stiffness coefficient
 F0 = 1; %forcing amplitude
 m = 1;  %unity mass
 
-x0_array = linspace(-5,5,25);   %initial state condition
-xdot0_array = linspace(-3,3,25);%initial state condition
-t_sim = 60; %set simulation time
+x0_array = linspace(1,2,5);   %initial state condition
+% xdot0_array = linspace(0,1,5);%initial state condition
+xdot0_array = 0.5;
+t_sim = 20; %set simulation time
 
 f1 = figure; %phase plot
 f2 = figure; %time plot
@@ -24,9 +24,9 @@ for ii = 1:length(x0_array)
         x_t = states.x_pos.Data(:,1);
         x_dot = states.x_dot.Data(:,1);
         %plot phase plane
-        figure(f1);
-        hold on
-        plot(x_t,x_dot)
+%         figure(f1);
+%         hold on
+%         plot(x_t,x_dot)
         %plot time behavior
         figure(f2);
         hold on 
@@ -34,7 +34,7 @@ for ii = 1:length(x0_array)
     end
 end
 hold off
-%label figures
+%% label figures
 figure(f1);
 title('Phase plane'); xlabel('x'); ylabel('x_{dot}')
 figure(f2);
